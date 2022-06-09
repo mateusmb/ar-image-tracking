@@ -8,9 +8,11 @@ const MindARViewer = () => {
     const arSystem = sceneEl.systems["mindar-image-system"];
     sceneEl.addEventListener("renderstart", () => {
       arSystem.start(); // start AR
+      console.log("start");
     });
     return () => {
       arSystem.stop();
+      console.log("stop");
     };
   }, []);
 
