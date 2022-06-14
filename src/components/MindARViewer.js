@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from "react";
+import Target from "../assets/targets/targets.mind";
+import Card from "../assets/images/target_codecoast.jpeg";
+import Model from "../assets/models/cc_logo.d58de42a.gltf";
 
 const MindARViewer = () => {
   const sceneRef = useRef(null);
@@ -17,7 +20,7 @@ const MindARViewer = () => {
   return (
     <a-scene
       ref={sceneRef}
-      mindar-image="imageTargetSrc: ../assets/targets/targets.mind; autoStart: false; uiLoading: no; uiError: no; uiScanning: no; filterMinCF:0.0005; filterBeta: 1500; warmupTolerance: 1; missTolerance: 20"
+      mindar-image={`imageTargetSrc: ${Target}; autoStart: false; uiLoading: yes; uiError: no; uiScanning: yes; filterMinCF: 0.0005; filterBeta: 2000; warmupTolerance: 2; missTolerance: 20;`}
       color-space="sRGB"
       embedded
       renderer="colorManagement: true, physicallyCorrectLights"
@@ -27,12 +30,12 @@ const MindARViewer = () => {
       <a-assets>
         <img
           id="card"
-          src="../assets/images/target_codecoast.jpeg"
+          src={Card}
           alt="card"
         />
         <a-asset-item
           id="avatarModel"
-          src="../assets/models/cc_logo.d58de42a.gltf"
+          src={Model}
         ></a-asset-item>
       </a-assets>
 
@@ -48,10 +51,9 @@ const MindARViewer = () => {
         ></a-plane>
         <a-gltf-model
           rotation="0 0 0 "
-          position="0 0 0.1"
-          scale="0.005 0.005 0.005"
+          position="0 -0.5 0.1"
+          scale="20 20 20"
           src="#avatarModel"
-          animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
         ></a-gltf-model>
       </a-entity>
     </a-scene>
