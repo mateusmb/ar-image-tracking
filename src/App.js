@@ -9,28 +9,15 @@ function App() {
   const [started, setStarted] = useState(false);
   return (
     <div className="App">
-      <div>
-        {!started && (
-          <button
-            onClick={() => {
-              setStarted(true);
-            }}
-          >
-            Start
-          </button>
-        )}
-        {started && (
-          <button
-            onClick={() => {
-              setStarted(false);
-            }}
-          >
-            Stop
-          </button>
-        )}
-      </div>
-
-      {started && (
+      {!started ? (
+        <button
+          onClick={() => {
+            setStarted(true);
+          }}
+        >
+          Start
+        </button>
+      ) : (
         <div className="container">
           <MindARViewer />
           <video></video>

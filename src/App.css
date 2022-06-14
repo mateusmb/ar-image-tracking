@@ -3,9 +3,9 @@
 }
 
 .container {
-  margin: 20px auto;
-  position: relative;
-  height: 300px;
-  width: 600px;
-  overflow: hidden;
+  height: 100vh;
+}
+
+button {
+  margin-top: 10px;
 }
