@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-const MindARViewer = () => {
+const MindARViewer = ({ mindImage }) => {
   const sceneRef = useRef(null);
 
   useEffect(() => {
@@ -14,12 +14,12 @@ const MindARViewer = () => {
       arSystem.stop();
       console.log("stop");
     };
-  }, []);
+  }, [mindImage]);
 
   return (
     <a-scene
       ref={sceneRef}
-      mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/examples/image-tracking/assets/card-example/card.mind; autoStart: false; uiLoading: no; uiError: no; uiScanning: no;"
+      mindar-image={`imageTargetSrc: ${mindImage}; autoStart: false; uiLoading: no; uiError: no; uiScanning: no;`}
       color-space="sRGB"
       embedded
       renderer="colorManagement: true, physicallyCorrectLights"
