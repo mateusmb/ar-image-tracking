@@ -19,7 +19,7 @@ const MindARViewer = () => {
   return (
     <a-scene
       ref={sceneRef}
-      mindar-image={`imageTargetSrc: ${Target}; autoStart: false; uiLoading: yes; uiError: no; uiScanning: yes; filterMinCF: 0.00001; filterBeta: 5000; warmupTolerance: 1; missTolerance: 30;`}
+      mindar-image={`imageTargetSrc: ${Target}; autoStart: false; uiLoading: yes; uiError: no; uiScanning: yes; filterMinCF: 0.001; filterBeta: 1500; warmupTolerance: 1; missTolerance: 2;`}
       color-space="sRGB"
       embedded
       renderer="colorManagement: true, physicallyCorrectLights"
