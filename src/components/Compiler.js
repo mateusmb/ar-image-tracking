@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MindARViewer from "./MindArViewer";
+import MindARViewer from "./MindARViewer";
 
 const Compiler = () => {
   const [mindImage, setMindImage] = useState(null);
