@@ -8,7 +8,7 @@ import Compiler from "./components/Compiler";
 function App() {
   return (
     <div className="App">
-      <h1>Example React component with MindAR</h1>
+      <h1>Image Tracking</h1>
       <Compiler />
     </div>
   );

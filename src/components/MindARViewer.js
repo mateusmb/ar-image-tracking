@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import Target from "../assets/targets/targets.mind";
-import Model from "../assets/models/cc_logo.d58de42a.gltf";
+import Model from "../assets/models/LOGO_GLTF.gltf";
 
-const MindARViewer = () => {
+const MindARViewer = ({ mindImage }) => {
   const sceneRef = useRef(null);
 
   useEffect(() => {
@@ -10,24 +9,29 @@ const MindARViewer = () => {
     const arSystem = sceneEl.systems["mindar-image-system"];
     sceneEl.addEventListener("renderstart", () => {
       arSystem.start(); // start AR
+      console.log("start");
     });
     return () => {
       arSystem.stop();
+      console.log("stop");
     };
-  }, []);
+  }, [mindImage]);
 
   return (
     <a-scene
       ref={sceneRef}
-      mindar-image={`imageTargetSrc: ${Target}; autoStart: false; uiLoading: yes; uiError: no; uiScanning: yes; filterMinCF: 0.001; filterBeta: 1500; warmupTolerance: 1; missTolerance: 2;`}
+      mindar-image={`imageTargetSrc: ${mindImage}; autoStart: false; uiLoading: no; uiError: no; uiScanning: no;`}
       color-space="sRGB"
       embedded
       renderer="colorManagement: true, physicallyCorrectLights"
       vr-mode-ui="enabled: false"
-      reflection="directionalLight:#real-light"
+      device-orientation-permission-ui="enabled: false"
     >
       <a-assets>
-        <a-asset-item id="model" src={Model}></a-asset-item>
+        <a-asset-item
+          id="model"
+          src={Model}
+        ></a-asset-item>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -35,18 +39,11 @@ const MindARViewer = () => {
       <a-entity mindar-image-target="targetIndex: 0">
         <a-gltf-model
           rotation="0 0 0 "
-          position="0 0 0"
-          scale="5 5 5"
+          position="0 0.5 0"
+          scale="8 8 8"
           src="#model"
         ></a-gltf-model>
       </a-entity>
-      <a-light
-        id="real-light"
-        type="directional"
-        light="castShadow:true;shadowCameraAutomatic:#objects;"
-        position="1 1 1"
-        intensity="0.5"
-      ></a-light>
     </a-scene>
   );
 };
