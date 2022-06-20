@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import MindARViewer from "./MindARViewer";
+import StaticModel from "../assets/models/LOGO_GLTF.gltf";
+import AnimatedModel from "../assets/models/Logo_animado.glb";
 
 const Compiler = () => {
   const [mindImage, setMindImage] = useState(null);
+  const [model, setModel] = useState(null);
   const compiler = new window.MINDAR.IMAGE.Compiler();
 
   const loadImage = async (file) => {
@@ -54,10 +57,17 @@ const Compiler = () => {
       {mindImage && (
         <>
           <div className="container">
-            <MindARViewer mindImage={mindImage} />
-            <video></video>
+            <button onClick={() => setModel(StaticModel)}>Modelo estático</button>
+            <button onClick={() => setModel(AnimatedModel)}>Modelo animado</button>
           </div>
         </>
+      )}
+      {model && (
+        <>
+        <div className="container">
+          <MindARViewer mindImage={mindImage} model={model} />
+        </div>
+      </>
       )}
     </>
   );

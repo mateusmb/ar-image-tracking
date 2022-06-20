@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Model from "../assets/models/LOGO_GLTF.gltf";
 
-const MindARViewer = ({ mindImage }) => {
+const MindARViewer = ({ mindImage, model=Model }) => {
   const sceneRef = useRef(null);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const MindARViewer = ({ mindImage }) => {
       <a-assets>
         <a-asset-item
           id="model"
-          src={Model}
+          src={model}
         ></a-asset-item>
       </a-assets>
 
