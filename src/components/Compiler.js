@@ -4,6 +4,7 @@ import StaticModel from "../assets/models/LOGO_GLTF.gltf";
 import AnimatedModel from "../assets/models/Logo_animado.glb";
 
 const Compiler = () => {
+  const [resetState, setResetState] = useState(true);
   const [mindImage, setMindImage] = useState(null);
   const [model, setModel] = useState(null);
   const compiler = new window.MINDAR.IMAGE.Compiler();
@@ -44,30 +45,50 @@ const Compiler = () => {
       compileFiles(files);
     }
   };
+
+  const handleSelectModel = (model) => {
+    setModel(model);
+    setResetState(false);
+  };
+
+  const handleReset = () => {
+    setModel(null);
+    setMindImage(null);
+    setResetState(true);
+  }
+
   return (
     <>
-      <span id="progress"></span>
-      <div id="dropzone" className="dropzone"></div>
-      <input
-        type="file"
-        id="input"
-        accept="image/jpeg, image/png, image/jpg"
-        onChange={handleSelectImage}
-      />
-      {mindImage && (
+      {resetState && (
         <>
-          <div className="container">
-            <button onClick={() => setModel(StaticModel)}>Modelo estático</button>
-            <button onClick={() => setModel(AnimatedModel)}>Modelo animado</button>
-          </div>
+          <span id="progress"></span>
+          <div id="dropzone" className="dropzone"></div>
+          <input
+            type="file"
+            id="input"
+            accept="image/jpeg, image/png, image/jpg"
+            onChange={handleSelectImage}
+          />
+          {mindImage && (
+            <>
+              <button onClick={() => handleSelectModel(StaticModel)}>
+                Modelo estatico
+              </button>
+              <button onClick={() => handleSelectModel(AnimatedModel)}>
+                Modelo animado
+              </button>
+            </>
+          )}
         </>
       )}
-      {model && (
+
+      {mindImage && model && (
         <>
-        <div className="container">
-          <MindARViewer mindImage={mindImage} model={model} />
-        </div>
-      </>
+          <button onClick={() => handleReset()}>Voltar</button>
+          <div className="container">
+            <MindARViewer mindImage={mindImage} model={model} />
+          </div>
+        </>
       )}
     </>
   );
