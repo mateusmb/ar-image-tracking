@@ -6,7 +6,7 @@ Based on [hiukim/mind-ar-js-react](https://github.com/hiukim/mind-ar-js-react).
 
 ## How to use
 
-Make sure you have npm > 8.1.0 and install yarn
+Make sure you have npm > 8.1.0 and install yarn uo
 
 ```npm install --global yarn```
 
