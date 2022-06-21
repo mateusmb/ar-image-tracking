@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import MindARViewer from "./MindARViewer";
 import StaticModel from "../assets/models/LOGO_GLTF.gltf";
 import AnimatedModel from "../assets/models/Logo_animado.glb";
+import ColorTarget from "../assets/targets/color_targets.mind";
+import MonoTarget from "../assets/targets/mono_targets.mind";
+import PosterTarget from "../assets/targets/poster_targets.mind";
+import Poster2Target from "../assets/targets/poster2_targets.mind";
 
 const Compiler = () => {
   const [resetState, setResetState] = useState(true);
@@ -61,14 +65,10 @@ const Compiler = () => {
     <>
       {resetState && (
         <>
-          <span id="progress"></span>
-          <div id="dropzone" className="dropzone"></div>
-          <input
-            type="file"
-            id="input"
-            accept="image/jpeg, image/png, image/jpg"
-            onChange={handleSelectImage}
-          />
+          <button onClick={() => setMindImage(ColorTarget)}>Target Color</button>
+          <button onClick={() => setMindImage(MonoTarget)}>Target Mono</button>
+          <button onClick={() => setMindImage(PosterTarget)}>Target Poster</button>
+          <button onClick={() => setMindImage(Poster2Target)}>Target Poster2</button>
           {mindImage && (
             <>
               <button onClick={() => handleSelectModel(StaticModel)}>
